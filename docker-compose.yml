@@ -1,0 +1,19 @@
+version: '2'
+services:
+  apiserver:
+    build: apiserver
+    command: python server.py
+  frontend:
+    build: frontend
+    volumes:
+      - ./dist:/usr/src/app/distReady
+  nginx:
+    image: nginx:alpine
+    ports:
+      - 8044:8044
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./dist:/usr/share/nginx/html:ro
+    depends_on:
+      - frontend
+      - apiserver
