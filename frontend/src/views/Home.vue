@@ -59,6 +59,10 @@ export default {
       this.messages.push({ text: ans.a, author: 'notMe' });
       this.curMsg = '';
     }
+  },
+  updated(){
+    var container = this.$el.querySelector(".bro-chatPage-body");
+    container.scrollTop = container.scrollHeight;
   }
 };
 </script>
